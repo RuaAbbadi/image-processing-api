@@ -9,12 +9,29 @@ router.get("/", async (req, res) => {
   const height = parseInt(req.query.height as string);
 
   //Validate parameters 
-  if (!fileName || isNaN(width) || isNaN(height) || width <= 0 || height <= 0) {
+   if (!fileName) {
     return res.status(400).json({
-      error:
-        "Invalid parameters. fileName must exist and width/height must be positive numbers",
+      error: "fileName parameter is required",
     });
-  } //if
+  }
+
+  if (isNaN(width) || isNaN(height)) {
+    return res.status(400).json({
+      error: "width and height must be valid numbers",
+    });
+  }
+
+  if (width === 0 || height === 0) {
+    return res.status(400).json({
+      error: "width and height cannot be zero",
+    });
+  }
+
+  if (width < 0 || height < 0) {
+    return res.status(400).json({
+      error: "width and height must be positive numbers",
+    });
+  }
 
   try {
     const imagePath = await resizeImage(fileName, width, height);
