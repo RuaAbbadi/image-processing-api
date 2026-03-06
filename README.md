@@ -68,3 +68,11 @@ http://localhost:3000/api/images?fileName=encenadaport&width=200&height=200
 | height | Desired image height |
 
 
+### Supported Image Formats
+
+The API supports the following image formats:
+
+jpg
+jpeg
+png
+

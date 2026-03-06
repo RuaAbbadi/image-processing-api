@@ -9,7 +9,7 @@ router.get("/", async (req, res) => {
 
   if (!fileName || !width || !height) {
     res.status(400).send("Missing Parameters");
-  }
+  }//if
 
   try {
     const imagePath = await resizeImage(fileName, width, height);
