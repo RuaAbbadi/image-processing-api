@@ -8,9 +8,11 @@ router.get("/", async (req, res) => {
   const width = parseInt(req.query.width as string);
   const height = parseInt(req.query.height as string);
 
-  if (!fileName || !width || !height) {
-     return res.status(400).json({
-      error: "Missing required parameters: fileName, width, height",
+  //Validate parameters 
+  if (!fileName || isNaN(width) || isNaN(height) || width <= 0 || height <= 0) {
+    return res.status(400).json({
+      error:
+        "Invalid parameters. fileName must exist and width/height must be positive numbers",
     });
   } //if
 
