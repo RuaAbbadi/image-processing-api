@@ -1,4 +1,5 @@
 import express from "express";
+import path from "path";
 import resizeImage from "../utilities/resizeImage";
 const router = express.Router();
 
@@ -8,15 +9,26 @@ router.get("/", async (req, res) => {
   const height = parseInt(req.query.height as string);
 
   if (!fileName || !width || !height) {
-    res.status(400).send("Missing Parameters");
-  }//if
+     return res.status(400).json({
+      error: "Missing required parameters: fileName, width, height",
+    });
+  } //if
 
   try {
     const imagePath = await resizeImage(fileName, width, height);
-    res.sendFile(imagePath);
+    const absolutePath = path.resolve(imagePath);
+    res.sendFile(absolutePath);
   } catch (error) {
+    if (error instanceof Error && error.message === "Image not found") {
+      return res.status(404).json({
+        error: `Image '${fileName}' not found in assets/full`,
+      });
+    }
     console.error(error);
-    res.status(500).send("Error while processing image");
+
+    return res.status(500).json({
+      error: "Failed to process image",
+    });
   }
 });
 
