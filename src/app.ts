@@ -9,5 +9,4 @@ app.get("/", (req, res) => {
   res.send("Image Processing API");
 });
 
-
 export default app;

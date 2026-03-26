@@ -8,8 +8,8 @@ router.get("/", async (req, res) => {
   const width = parseInt(req.query.width as string);
   const height = parseInt(req.query.height as string);
 
-  //Validate parameters 
-   if (!fileName) {
+  //Validate parameters
+  if (!fileName) {
     return res.status(400).json({
       error: "fileName parameter is required",
     });
