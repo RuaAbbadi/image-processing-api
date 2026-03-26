@@ -51,7 +51,7 @@ http://localhost:3000/api/images?fileName=encenadaport&width=200&height=200
 
 ### ✅ Expected Output
 
-* Returns a **resized image file (200x200)**
+* Returns a **resized image file**
 * The image will also be cached in `assets/thumb`
 * Returns **status 200 OK**
 
