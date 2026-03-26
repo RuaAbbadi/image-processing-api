@@ -14,8 +14,6 @@ const findImagePath = (
   for (const ext of supportedExtensions) {
     const fullPath = path.join(fullDir, `${fileName}.${ext}`);
 
-    console.log("Checking:", fullPath);
-
     if (fs.existsSync(fullPath)) {
       return { path: fullPath, ext };
     }
