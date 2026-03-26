@@ -45,8 +45,6 @@ const resizeImage = async (
     `${fileName}_${width}_${height}.${image.ext}`,
   );
 
-  console.log("cwd:", process.cwd());
-
   //caching - return the cached Image if it exists
   if (!fs.existsSync(outputPath)) {
     await sharp(image.path).resize(width, height).toFile(outputPath);
